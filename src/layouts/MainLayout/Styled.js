@@ -1,9 +1,9 @@
-import React from "react";
-import styled from "styled-components";
+import React from 'react';
+import styled from 'styled-components';
 
 export const LayoutWrap = styled.div`
   height: 100vh;
-  width: 100vw;
+  width: 100%;
   padding: 0;
   margin: 0;
   display: grid;
@@ -13,4 +13,14 @@ export const LayoutWrap = styled.div`
 
 export const HeaderBox = styled.div`
   height: 100%;
-`; 
+`;
+
+export const BodyBox = styled.div`
+  max-width: 900px; 
+  justify-self: center;
+  min-height: 100%;
+`;
+
+export const FooterBox = styled.footer`
+
+`;

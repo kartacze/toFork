@@ -1,18 +1,13 @@
-import React from "react";
-import { Provider } from "react-redux";
-import { ConnectedRouter } from "react-router-redux";
+import React from 'react';
+import {Provider} from 'react-redux';
+import {ConnectedRouter} from 'react-router-redux';
+import Routes from './routes';
 
-const styles = {
-  fontFamily: "sans-serif",
-  textAlign: "center"
-};
 
-const App = ({ store, history }) => (
+const App = ({store, history}) => (
   <Provider store={store}>
     <ConnectedRouter history={history}>
-      <div style={styles}>
-        <h2>Start editing to see some magic happen {"\u2728"}</h2>
-      </div>
+      <Routes />
     </ConnectedRouter>
   </Provider>
 );
