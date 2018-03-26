@@ -4,6 +4,7 @@ import { routerMiddleware } from "react-router-redux";
 import { createEpicMiddleware } from "redux-observable";
 import { createLogger } from "redux-logger";
 import { Iterable } from "immutable";
+import Rx from 'rxjs/Rx';
 
 import createReducer from "./reducers";
 import { rootEpic } from "./epics";
@@ -18,10 +19,25 @@ const logger = createLogger({
   stateTransformer
 });
 
+const createRxMiddleware = () => {
+  let middleware;
+   Rx.Observable.create(function (observer) {
+      middleware = ({ dispatch, getState }) => next => action => 
+        observer.next({ dispatch, getState, next, action});
+   }).subscribe(e => console.log('this is inside my rxjs', e));
+  return middleware;
+};
+
+const myMiddle = store => next => action => {
+
+  console.log('here we are hehe');
+  next(action);
+};
+
 export default function configureStore(initialState = {}, history) {
   // Create the store with two middlewares
   // 2. routerMiddleware: Syncs the location/URL path to the state
-  const middlewares = [routerMiddleware(history), logger, epicMiddleware];
+  const middlewares = [routerMiddleware(history), logger, epicMiddleware, myMiddle, createRxMiddleware() ];
 
   const enhancers = [applyMiddleware(...middlewares)];
 

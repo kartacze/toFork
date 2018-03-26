@@ -6,6 +6,14 @@ function todoApp(state = 0, action) {
       return Object.assign({}, state, {
         visibilityFilter: action.filter
       });
+    case "LEFT_ACTION":
+      {
+
+        console.log('inside reducer');
+      return Object.assign({}, state, {
+        state:1 
+      });
+      }
     default:
       return state;
   }
